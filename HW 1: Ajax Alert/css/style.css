@@ -49,7 +49,7 @@ html, body {
   }
   
   button:active {
-    background-color: 49599a;
+    background-color: #49599a;
     box-shadow: none;
     position: relative;
     top: -8px;
