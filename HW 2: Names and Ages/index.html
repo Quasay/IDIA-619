@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HW 2: Lists w/ AJAX</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <script src="main.js"></script>
 </head>
 <body>
 
@@ -15,8 +16,7 @@
             HW 2: Lists w/ Ajax
         </p>
         <p class="subtitle">
-            Primary subtitle
-        </p>
+            Make the web page gather four names and ages. Put the names and ages into an array. Display all 4 names in the console.        </p>
     </div>
 </section>
 
@@ -30,7 +30,7 @@
             <div class="field">
                 <p class="control">
                     <label class="label">Name
-                        <input class="input" type="text" placeholder="Name">
+                        <input class="input" type="text" id="name1" placeholder="Name">
                     </label>
                 </p>
             </div>
@@ -40,7 +40,7 @@
             <div class="field">
                 <p class="control">
                     <label class="label">Age
-                        <input class="input" type="text" placeholder="Age">
+                        <input class="input" type="text" id = "age1" placeholder="Age">
                     </label>
                 </p>
             </div>
@@ -53,7 +53,7 @@
             <div class="field">
                 <p class="control">
                     <label class="label">Name
-                        <input class="input" type="text" placeholder="Name">
+                        <input class="input" type="text" id="name2" placeholder="Name">
                     </label>
                 </p>
             </div>
@@ -63,7 +63,7 @@
             <div class="field">
                 <p class="control">
                     <label class="label">Age
-                        <input class="input" type="text" placeholder="Age">
+                        <input class="input" type="text" id="age2" placeholder="Age">
                     </label>
                 </p>
             </div>
@@ -76,7 +76,7 @@
             <div class="field">
                 <p class="control">
                     <label class="label">Name
-                        <input class="input" type="text" placeholder="Name">
+                        <input class="input" type="text"  id="name3" placeholder="Name">
                     </label>
                 </p>
             </div>
@@ -86,7 +86,7 @@
             <div class="field">
                 <p class="control">
                     <label class="label">Age
-                        <input class="input" type="text" placeholder="Age">
+                        <input class="input" type="text" id="age3" placeholder="Age">
                     </label>
                 </p>
             </div>
@@ -98,7 +98,7 @@
             <div class="field">
                 <p class="control">
                     <label class="label">Name
-                        <input class="input" type="text" placeholder="Name">
+                        <input class="input" type="text" id="name4" placeholder="Name">
                     </label>
                 </p>
             </div>
@@ -108,7 +108,7 @@
             <div class="field">
                 <p class="control">
                     <label class="label">Age
-                        <input class="input" type="text" placeholder="Age">
+                        <input class="input" type="number" id="age4" placeholder="Age">
                     </label>
                 </p>
             </div>
@@ -116,7 +116,7 @@
     </div>
 
 
-    <button class="button is-danger is-outlined is-medium">Submit</button>
+    <button class="button is-danger is-outlined is-medium" onclick="arrayCalc()">Submit</button>
 
 </div>
 
