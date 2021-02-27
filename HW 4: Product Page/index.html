@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HW 4: Product Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <script src="main.js"></script>
+</head>
+<body>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <p class="title">
+            HW 4: Product Page
+        </p>
+        <p class="subtitle">
+            <a href="https://uxdesign.cc/why-ux-designers-should-code-and-when-they-shouldnt-1293650e139e">
+                Create a Web page with the following things:
+
+                <br>
+                    - Text input field for Product Name
+                <br>
+                    - Text input field for Year Manufactured
+                <br>
+                    - Button to add Product to a list (array)
+                <br>
+                    - Button to View List
+
+                <br>
+                <br>
+                When the user clicks the add product button, the system checks to see if the product was made before 2008. If it was, it can be added to the list. If it was not, the user gets a message saying it is too new and can't be added. If the user clicks the button to view the list, the products are listed in the page. The summary page from the Putting It All Together Video is attached.
+            </a>
+        </p>
+    </div>
+</section>
+
+<div class="field is-horizontal">
+    <div class="field-body level-left">
+        <div class="field">
+            <p class="control">
+                <label class="label">Product Name
+                    <input class="input" type="text" id="product" placeholder="Product Name">
+                </label>
+            </p>
+        </div>
+    </div>
+
+    <div class="field-body level-left">
+        <div class="field">
+            <p class="control">
+                <label class="label">Year Manufactured
+                    <input class="input" type="number" id="year" placeholder="Year Manufactured">
+                </label>
+            </p>
+        </div>
+    </div>
+</div>
+
+<button class="button is-warning" onclick="addList()">Add to list</button>
+<button class="button is-success" onclick="viewList()">View List</button>
+<button class="button is-danger" onclick="deleteList()">Delete List</button>
+
+<ul id="products"></ul>
+
+
+</body>
+</html>
