@@ -1,0 +1,60 @@
+{
+    "charityNavigatorURL": "https://www.charitynavigator.org/?bay=search.profile&ein=010060379&utm_source=DataAPI&utm_content=9989397e",
+    "mission": null,
+    "websiteURL": null,
+    "tagLine": null,
+    "charityName": "Healing and Deliverance Ministry Inc.",
+    "ein": "010060379",
+    "orgID": null,
+    "irsClassification": {
+      "deductibility": "Contributions are deductible",
+      "subsection": "501(c)(3)",
+      "assetAmount": null,
+      "nteeType": "Religion-Related, Spiritual Development",
+      "nteeSuffix": null,
+      "incomeAmount": null,
+      "filingRequirement": "990 - Not required to file (church) ",
+      "classification": "Religious Organization",
+      "latest990": null,
+      "rulingDate": "July, 2014",
+      "nteeCode": "X20",
+      "groupName": null,
+      "deductibilityCode": "1",
+      "affiliation": "Independent - the organization is an independent organization or an independent auxiliary (i.e., not affiliated with a National, Regional, or Geographic grouping of organizations).",
+      "foundationStatus": "Church 170(b)(1)(A)(i)",
+      "nteeClassification": "Christian",
+      "accountingPeriod": "December",
+      "deductibilityDetail": null,
+      "exemptOrgStatusCode": "01",
+      "exemptOrgStatus": "Unconditional Exemption",
+      "nteeLetter": "X"
+    },
+    "mailingAddress": {
+      "country": null,
+      "stateOrProvince": "MD",
+      "city": "CLARKSBURG",
+      "postalCode": "20871-6337",
+      "streetAddress1": "14103 BYRNE PARK DR",
+      "streetAddress2": null
+    },
+    "advisories": {
+      "severity": null,
+      "active": {
+        "_rapid_links": {
+          "related": {
+            "href": "https://api.data.charitynavigator.org/v2/Organizations/010060379/Advisories?status=ACTIVE"
+          }
+        }
+      }
+    },
+    "organization": {
+      "charityName": "Healing and Deliverance Ministry Inc.",
+      "ein": "010060379",
+      "charityNavigatorURL": "https://www.charitynavigator.org/?bay=search.profile&ein=010060379&utm_source=DataAPI&utm_content=9989397e",
+      "_rapid_links": {
+        "related": {
+          "href": "https://api.data.charitynavigator.org/v2/Organizations/010060379"
+        }
+      }
+    }
+  }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <title>HW 7: Weather</title>
+    <script>
+
+
+        function getWeather() {
+
+            theZip = document.getElementById("zip").value;
+
+
+            const data = null;
+            const xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    console.log(this.responseText);
+
+                    const weatherObj = JSON.parse(this.responseText);
+
+                    console.log(weatherObj);
+
+                    var theHTML
+
+                    theHTML = document.getElementById("display")
+                    theHTML.innerHTML = "<p>" + weatherObj.name + "</p>";
+                    theHTML.innerHTML = theHTML.innerHTML + "<h1>" + weatherObj.main.temp + "</h1>";
+                    theHTML.innerHTML = theHTML.innerHTML + " Weather Conditions: " + weatherObj.weather[0].description;
+
+                }
+            });
+
+            xhr.open("GET", "https://community-open-weather-map.p.rapidapi.com/weather?zip=" + theZip + "&units=imperial");
+            xhr.setRequestHeader("x-rapidapi-key", "600a3f8e7emsh88431a76d4df619p1c5c3cjsnd7bcbe519ac9");
+            xhr.setRequestHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com");
+            xhr.withCredentials = false;
+            xhr.send(data);
+
+        }
+
+    </script>
+</head>
+<body>
+
+Zip Code: <label for="zip"> </label><input type="text" id="zip">
+<button onclick="getWeather()">Weather!</button>
+<div id="display"><p></p></div>
+</body>
+</html>
+
+
+
+

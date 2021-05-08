@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html lang="">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<title>HW 9: Canvas</title>
+	</head>
+
+	<body>
+		<canvas id="myCanvas" style="background: white"></canvas>
+		<legend for="myCanvas" id="legend"></legend>
+
+		<h1>
+			Sources:
+
+			<br />
+
+			https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+
+			<br />
+
+			https://code.tutsplus.com/tutorials/how-to-draw-bar-charts-using-javascript-and-html5-canvas--cms-28561
+		</h1>
+
+		<script>
+			const api_url = 'https://home.ubalt.edu/gwalsh/idia619/data.php';
+
+			var myData = {
+				item01: 10,
+				item02: 10,
+				item03: 10,
+				item04: 20,
+				item05: 10,
+			};
+			var title;
+
+			function drawLine(ctx, startX, startY, endX, endY, color) {
+				ctx.save();
+				ctx.strokeStyle = color;
+				ctx.beginPath();
+				ctx.moveTo(startX, startY);
+				ctx.lineTo(endX, endY);
+				ctx.stroke();
+				ctx.restore();
+			}
+
+			function drawBar(
+				ctx,
+				upperLeftCornerX,
+				upperLeftCornerY,
+				width,
+				height,
+				color
+			) {
+				ctx.save();
+				ctx.fillStyle = color;
+				ctx.fillRect(upperLeftCornerX, upperLeftCornerY, width, height);
+				ctx.restore();
+			}
+
+			async function getData() {
+				var myCanvas = document.getElementById('myCanvas');
+				myCanvas.width = 300;
+				myCanvas.height = 300;
+				var ctx = myCanvas.getContext('2d');
+
+				// Clears Previous Bar Chart
+				ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
+				// Clears Previous Legend
+
+				const response = await fetch(api_url);
+				const data = await response.json();
+
+				myData.item01 = parseInt(data[0].item01);
+				myData.item02 = parseInt(data[0].item02);
+				myData.item03 = parseInt(data[0].item03);
+				myData.item04 = parseInt(data[0].item04);
+				myData.item05 = parseInt(data[0].item05);
+				title = data[0].title;
+
+				let myBarchart = new Barchart({
+					canvas: myCanvas,
+					seriesName: 'HW 9: Auto Reload',
+					padding: 20,
+					gridScale: 5,
+					gridColor: '#eeeeee',
+					data: myData,
+					colors: ['#a55ca5', '#67b6c7', '#bccd7a', '#eb9743'],
+				});
+
+				myBarchart.draw();
+			}
+
+			// Initial Data Request to happen immediately.
+			getData();
+			setInterval(getData, 5000);
+
+			var Barchart = function (options) {
+				this.options = options;
+				this.canvas = options.canvas;
+				this.ctx = this.canvas.getContext('2d');
+				this.colors = options.colors;
+
+				this.draw = function () {
+					var maxValue = 0;
+					for (var categ in this.options.data) {
+						maxValue = Math.max(maxValue, this.options.data[categ]);
+					}
+					var canvasActualHeight =
+						this.canvas.height - this.options.padding * 2;
+					var canvasActualWidth = this.canvas.width - this.options.padding * 2;
+
+					//drawing the grid lines
+					var gridValue = 0;
+					while (gridValue <= maxValue) {
+						var gridY =
+							canvasActualHeight * (1 - gridValue / maxValue) +
+							this.options.padding;
+						drawLine(
+							this.ctx,
+							0,
+							gridY,
+							this.canvas.width,
+							gridY,
+							this.options.gridColor
+						);
+
+						//writing grid markers
+						this.ctx.save();
+						this.ctx.fillStyle = this.options.gridColor;
+						this.ctx.textBaseline = 'bottom';
+						this.ctx.font = 'bold 10px Arial';
+						this.ctx.fillText(gridValue, 10, gridY - 2);
+						this.ctx.restore();
+
+						gridValue += this.options.gridScale;
+					}
+
+					//drawing the bars
+					var barIndex = 0;
+					var numberOfBars = Object.keys(this.options.data).length;
+					var barSize = canvasActualWidth / numberOfBars;
+
+					for (categ in this.options.data) {
+						var val = this.options.data[categ];
+						var barHeight = Math.round((canvasActualHeight * val) / maxValue);
+						drawBar(
+							this.ctx,
+							this.options.padding + barIndex * barSize,
+							this.canvas.height - barHeight - this.options.padding,
+							barSize,
+							barHeight,
+							this.colors[barIndex % this.colors.length]
+						);
+
+						barIndex++;
+					}
+
+					//drawing series name
+					this.ctx.save();
+					this.ctx.textBaseline = 'bottom';
+					this.ctx.textAlign = 'center';
+					this.ctx.fillStyle = '#000000';
+					this.ctx.font = 'bold 14px Arial';
+					this.ctx.fillText(
+						this.options.seriesName,
+						this.canvas.width / 2,
+						this.canvas.height
+					);
+					this.ctx.restore();
+
+					//draw legend
+					barIndex = 0;
+					var legend = document.querySelector("legend[for='myCanvas']");
+
+					if ($('#legend').is(':empty')) {
+						var ul = document.createElement('ul');
+						legend.append(ul);
+						for (categ in this.options.data) {
+							var li = document.createElement('li');
+							li.style.listStyle = 'none';
+							li.style.borderLeft =
+								'20px solid ' + this.colors[barIndex % this.colors.length];
+							li.style.padding = '5px';
+							li.textContent = categ;
+							ul.append(li);
+							barIndex++;
+						}
+					}
+				};
+			};
+		</script>
+	</body>
+</html>
